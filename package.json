@@ -1,0 +1,22 @@
+{
+  "name": "booktracking",
+  "version": "1.0.0",
+  "description": "dependencies for the bookTracking webapp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dillonschultz93/bookTracking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dillonschultz93/bookTracking/issues"
+  },
+  "homepage": "https://github.com/dillonschultz93/bookTracking#readme",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
+}
