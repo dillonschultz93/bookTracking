@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS booksDB;
+
+CREATE DATABASE booksDB;
+
+USE booksDB;
+
+CREATE TABLE readList (
+  id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  author VARCHAR(100) NOT NULL,
+  year INT NULL,
+  rating INT NULL,
+  PRIMARY KEY (id)
+);
