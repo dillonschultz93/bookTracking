@@ -2,7 +2,7 @@
   "name": "booktracking",
   "version": "1.0.0",
   "description": "dependencies for the bookTracking webapp",
-  "main": "server.js",
+  "main": "books.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
