@@ -34,15 +34,22 @@ const readDB = () => {
 }
 
 // == UPDATE ==================================================================
-const updateDB = (title, author, year, rating) => {
+const updateDB = (keySet, keyWhere, input, original) => {
   connection.query(
-    'UPDATE products SET ? WHERE ?',
+    'UPDATE readList SET ? WHERE ?',
     [
-      {stock_quantity: amount},
-      {item_id: id}
-    ],
-    (error, response) => {
-      console.log(chalk.gray('Updated stock'))
+      {keySet: input}, {keyWhere: original}
+    ], (error, response) => {
+      console.log(response.affectedRows)
+    }
+  )
+}
+// == DELETE ==================================================================
+const deleteTitle = (keyWhere, input) => {
+  connection.query(
+    'DELETE FROM readList WHERE ?',
+    {keyWhere: input}, (error, response) => {
+      console.log(response.affectedRows)
     }
   )
 }
