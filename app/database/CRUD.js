@@ -10,15 +10,16 @@ const connection = mysql.createConnection({
 })
 
 // == CREATE ==================================================================
-const createTitle = (title, author, year, rating) => {
-  connection.query(
-    'INSERT INTO readList SET ?',
+const createTitle = (inputOne, inputTwo, inputThree, inputFour) => {
+  let query = connection.query(
+    "INSERT INTO readList SET ?",
     {
-      title: title,
-      author: author,
-      year: year,
-      rating: rating
-    }, (error, response) => {
+      title: inputOne,
+      author: inputTwo,
+      genre: inputThree,
+      year: inputFour
+    }, 
+    function(error, response) {
       console.log(response.affectedRows)
     }
   )
@@ -27,29 +28,73 @@ const createTitle = (title, author, year, rating) => {
 // == READ ====================================================================
 const readDB = () => {
   return new Promise((resolve, reject) => {
-    connection.query('SELCET * FROM readList', (error, response) => {
+    connection.query('SELECT * FROM readList', (error, response) => {
       resolve(response)
     })
   })
 }
 
 // == UPDATE ==================================================================
-const updateDB = (keySet, keyWhere, input, original) => {
+const updateTitle = (idNumber, input) => {
   connection.query(
     'UPDATE readList SET ? WHERE ?',
     [
-      {keySet: input}, {keyWhere: original}
-    ], (error, response) => {
+      {title: input}, {id: idNumber}
+    ], function(error, response) {
       console.log(response.affectedRows)
     }
   )
 }
-// == DELETE ==================================================================
-const deleteTitle = (keyWhere, input) => {
+
+const updateAuthor = (idNumber, input) => {
   connection.query(
-    'DELETE FROM readList WHERE ?',
-    {keyWhere: input}, (error, response) => {
+    'UPDATE readList SET ? WHERE ?',
+    [
+      {author: input}, {id: idNumber}
+    ], function(error, response) {
       console.log(response.affectedRows)
     }
   )
+}
+
+const updateGenre = (idNumber, input) => {
+  connection.query(
+    'UPDATE readList SET ? WHERE ?',
+    [
+      {genre: input}, {id: idNumber}
+    ], function(error, response) {
+      console.log(response.affectedRows)
+    }
+  )
+}
+
+const updateYear = (idNumber, input) => {
+  connection.query(
+    'UPDATE readList SET ? WHERE ?',
+    [
+      {year: input}, {id: idNumber}
+    ], function(error, response) {
+      console.log(response.affectedRows)
+    }
+  )
+}
+
+// == DELETE ==================================================================
+const deleteTitle = (input) => {
+  connection.query(
+    'DELETE FROM readList WHERE ?',
+    {id: input}, (error, response) => {
+      console.log(response.affectedRows)
+    }
+  )
+}
+
+module.exports = {
+  createTitle: createTitle,
+  readDB: readDB,
+  updateTitle: updateTitle,
+  updateAuthor: updateAuthor,
+  updateGenre: updateGenre,
+  updateYear: updateYear,
+  deleteTitle: deleteTitle
 }
